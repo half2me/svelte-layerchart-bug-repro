@@ -22,12 +22,18 @@ async function run(mode, clicks = 5) {
 			try {
 				await page.locator('#bump').click({ timeout: 8000 });
 				await withTimeout(page.evaluate(() => 1), 8000);
-				results.push(`${Date.now() - t0}ms`);
+				const responded = Date.now() - t0;
+				await page.waitForTimeout(600);
+				// the bar count is 10 + clicks, so it also proves the chart really redrew
+				const bars = await withTimeout(
+					page.evaluate(() => document.querySelectorAll('#chart rect').length),
+					8000
+				);
+				results.push(`${responded}ms/${bars}bars`);
 			} catch {
 				results.push('FROZEN');
 				break;
 			}
-			await page.waitForTimeout(250);
 		}
 	} catch (e) {
 		results.push('setup failed: ' + String(e).split('\n')[0]);

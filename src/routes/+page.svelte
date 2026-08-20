@@ -29,10 +29,16 @@
 		}))
 	);
 
-	/** The same data as the remote query returns, but through an ordinary promise. */
-	const plainPromise = $derived(
-		new Promise<typeof localRows>((resolve) => setTimeout(() => resolve(localRows), 40))
-	);
+	/**
+	 * The same data as the remote query returns, but through an ordinary promise.
+	 * localRows is read SYNCHRONOUSLY here on purpose: read it inside the setTimeout callback
+	 * instead and this derived has no reactive dependency, so the chart never updates and the
+	 * mode silently stops being a control.
+	 */
+	const plainPromise = $derived.by(() => {
+		const rows = localRows;
+		return new Promise<typeof localRows>((resolve) => setTimeout(() => resolve(rows), 40));
+	});
 
 	const rowsQuery = $derived(getRows({ bucket }));
 	let latched = $state<typeof localRows | null>(null);

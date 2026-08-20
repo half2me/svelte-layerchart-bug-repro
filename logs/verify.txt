@@ -1,0 +1,7 @@
+# node verify.mjs — @sveltejs/kit 3.0.0-next.23, svelte 5.56.9, layerchart 2.0.2
+# 'NNms/Nbars' = the tab answered in NN ms, and the chart then had N bars (10 + clicks).
+
+plain    26ms/11bars / 26ms/12bars / 28ms/13bars / 30ms/14bars / 31ms/15bars
+beside   108ms/11bars / 82ms/12bars / 91ms/13bars / 89ms/14bars / 112ms/15bars
+latched  FROZEN
+inside   FROZEN
