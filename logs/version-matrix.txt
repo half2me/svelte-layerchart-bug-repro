@@ -1,19 +1,20 @@
 # Is it SvelteKit or Svelte? Same page, same layerchart 2.0.2, same vite 8.
-# 'inside' is the mode that freezes; 'plain' is the control. NNms/Nbars — the chart has 10 + clicks bars.
+# 'inside' is the mode that freezes, 'plain' is the control.
+# NNms/Nbars: the tab answered in NN ms, and the chart then had N bars (10 + clicks).
 
 --- SvelteKit 3.0.0-next.23, svelte 5.56.9
     kit=3.0.0-next.23 svelte=5.56.9
-plain    42ms/11bars / 23ms/12bars / 28ms/13bars / 29ms/14bars / 31ms/15bars
+plain    215ms/11bars / 21ms/12bars / 29ms/13bars / 29ms/14bars / 30ms/15bars
 inside   FROZEN
 --- SvelteKit 2.64.0, svelte 5.56.9
     kit=2.64.0 svelte=5.56.9
-plain    163ms/11bars / 23ms/12bars / 31ms/13bars / 27ms/14bars / 28ms/15bars
-inside   36ms/11bars / 26ms/12bars / 30ms/13bars / 31ms/14bars / 28ms/15bars
+plain    404ms/11bars / 23ms/12bars / 30ms/13bars / 30ms/14bars / 29ms/15bars
+inside   30ms/11bars / 23ms/12bars / 31ms/13bars / 30ms/14bars / 33ms/15bars
 --- SvelteKit 3.0.0-next.23, svelte 5.56.7
     kit=3.0.0-next.23 svelte=5.56.7
-plain    27ms/11bars / 24ms/12bars / 29ms/13bars / 31ms/14bars / 27ms/15bars
+plain    28ms/11bars / 25ms/12bars / 31ms/13bars / 27ms/14bars / 31ms/15bars
 inside   FROZEN
 --- SvelteKit 2.64.0, svelte 5.56.7
     kit=2.64.0 svelte=5.56.7
-plain    41ms/11bars / 24ms/12bars / 29ms/13bars / 30ms/14bars / 29ms/15bars
-inside   26ms/11bars / 27ms/12bars / 31ms/13bars / 30ms/14bars / 28ms/15bars
+plain    39ms/11bars / 23ms/12bars / 29ms/13bars / 30ms/14bars / 28ms/15bars
+inside   40ms/11bars / 27ms/12bars / 31ms/13bars / 30ms/14bars / 31ms/15bars

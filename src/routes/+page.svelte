@@ -3,15 +3,14 @@
 	import { getRows } from './data.remote';
 
 	/**
-	 * Four shapes, selected with ?mode=. Only the last two freeze.
+	 * Four shapes, selected with the radio buttons. Only the last two freeze.
 	 *
-	 *   plain    — chart fed from a PLAIN awaited promise. No remote function. Fine.
-	 *   beside   — chart fed from local state, with an awaited remote query BESIDE it that
-	 *              re-resolves on every click. Fine.
-	 *   latched  — chart fed from the remote query's value via an $effect latch, awaited region
-	 *              present. FREEZES on the second click.
-	 *   inside   — chart INSIDE the awaited region, fed by the awaited value. FREEZES on the
-	 *              second click.
+	 *   plain    chart fed from a PLAIN awaited promise. No remote function. Fine.
+	 *   beside   chart fed from local state, with an awaited remote query BESIDE it that
+	 *            re-resolves on every click. Fine.
+	 *   latched  chart fed from the remote query's value via an $effect latch, awaited
+	 *            region present. FREEZES, and never redraws the chart even before it does.
+	 *   inside   chart INSIDE the awaited region, fed by the awaited value. Same.
 	 */
 	const modes = ['plain', 'beside', 'latched', 'inside'] as const;
 	type Mode = (typeof modes)[number];

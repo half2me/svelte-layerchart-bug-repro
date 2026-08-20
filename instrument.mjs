@@ -38,7 +38,9 @@ async function run(mode) {
 		await page.addInitScript(probe);
 		await page.goto(BASE, { timeout: 30_000 });
 		await page.getByRole('radio', { name: mode, exact: true }).check();
-		await sleep(1500);
+		// wait for the chart to actually mount, or its mount cost lands on click 1
+		await page.locator('#chart rect').first().waitFor({ timeout: 10_000 });
+		await sleep(1000);
 		const load = await page.evaluate(() => ({
 			u: globalThis.__svelteProbe.updates,
 			d: globalThis.__svelteProbe.dirty
@@ -68,7 +70,7 @@ async function run(mode) {
 					`  click ${i}  responded in ${String(responded).padStart(5)}ms  update_derived=${String(c.u).padStart(8)}  is_dirty=${String(c.d).padStart(9)}  bars=${c.bars}`
 				);
 			} catch {
-				console.log(`  click ${i}  WEDGED — tab stopped answering; watching the probe stream…`);
+				console.log(`  click ${i}  WEDGED. Tab stopped answering, watching the probe stream.`);
 				const t1 = Date.now();
 				while (Date.now() - t1 < WEDGE_WATCH_MS) await sleep(500);
 				for (const line of probeLines) console.log('    ' + line.replace(/\n/g, '\n    '));

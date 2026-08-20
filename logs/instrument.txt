@@ -1,35 +1,35 @@
-# node instrument.mjs — @sveltejs/kit 3.0.0-next.23, svelte 5.56.9, layerchart 2.0.2
+# node instrument.mjs, @sveltejs/kit 3.0.0-next.23, svelte 5.56.9, layerchart 2.0.2
 # Counters are reset before each click, so each line is the cost of that ONE click.
-# update_derived / is_dirty are counted in svelte's client runtime (instrument/patch-svelte.mjs).
+# update_derived and is_dirty are counted in svelte's client runtime (instrument/patch-svelte.mjs).
 
 
 === mode: plain ===
   page load          update_derived=3430  is_dirty=723853
-  click 1  responded in    20ms  update_derived=    1170  is_dirty=    95968  bars=11
-  click 2  responded in    26ms  update_derived=    1041  is_dirty=    95513  bars=12
-  click 3  responded in    24ms  update_derived=    1152  is_dirty=   101858  bars=13
+  click 1  responded in    31ms  update_derived=    1170  is_dirty=    95968  bars=11
+  click 2  responded in    21ms  update_derived=    1041  is_dirty=    95513  bars=12
+  click 3  responded in    27ms  update_derived=    1152  is_dirty=   101858  bars=13
 
 === mode: beside ===
   page load          update_derived=3431  is_dirty=724198
-  click 1  responded in    98ms  update_derived=    1189  is_dirty=    99435  bars=11
-  click 2  responded in    87ms  update_derived=    1057  is_dirty=    98798  bars=12
-  click 3  responded in    87ms  update_derived=    1170  is_dirty=   105501  bars=13
+  click 1  responded in   102ms  update_derived=    1189  is_dirty=    99435  bars=11
+  click 2  responded in    79ms  update_derived=    1057  is_dirty=    98798  bars=12
+  click 3  responded in    78ms  update_derived=    1170  is_dirty=   105501  bars=13
 
 === mode: latched ===
   page load          update_derived=3432  is_dirty=733060
-  click 1  WEDGED — tab stopped answering; watching the probe stream…
-    [probe] update_derived=250000 is_dirty=3035951 t=13831ms
-    [probe] update_derived=500000 is_dirty=5636105 t=22645ms
-    [probe] update_derived=750000 is_dirty=8140452 t=30551ms
+  click 1  WEDGED. Tab stopped answering, watching the probe stream.
+    [probe] update_derived=250000 is_dirty=3035951 t=14111ms
+    [probe] update_derived=500000 is_dirty=5636105 t=22728ms
+    [probe] update_derived=750000 is_dirty=8140452 t=30749ms
     still wedged after 25s
 
 === mode: inside ===
   page load          update_derived=3430  is_dirty=723850
-  click 1  WEDGED — tab stopped answering; watching the probe stream…
-    [probe] update_derived=250000 is_dirty=1834196 t=4725ms
-    [probe] update_derived=500000 is_dirty=3593596 t=6990ms
-    [probe] update_derived=750000 is_dirty=5290887 t=8556ms
-    [probe] update_derived=1000000 is_dirty=6991365 t=10093ms
+  click 1  WEDGED. Tab stopped answering, watching the probe stream.
+    [probe] update_derived=250000 is_dirty=1834196 t=4953ms
+    [probe] update_derived=500000 is_dirty=3593596 t=7067ms
+    [probe] update_derived=750000 is_dirty=5290887 t=8567ms
+    [probe] update_derived=1000000 is_dirty=6991365 t=10036ms
     [probe:top] recomputations  derived
     [probe:top]    687650  () => this._getStackConfig()
     [probe:top]    137026  () => { const config = get(this.#stackConfig); if (!config || !config.layout.startsWith("stack")) re
@@ -45,24 +45,27 @@
     [probe:top]       774  () => { if (this._yDomainMotion) { const animated = this._yDomainMotion.current; if (this._yDomainIs
     [probe:stack]    at Object.dump (<anonymous>:42:11)
         at Object.tick (<anonymous>:30:8)
-        at update_derived (http://localhost:5199/node_modules/.vite/deps/runtime-_WxBaxsw.js?v=725a4c60:2630:26)
-        at get (http://localhost:5199/node_modules/.vite/deps/runtime-_WxBaxsw.js?v=725a4c60:5125:4)
-        at http://localhost:5199/node_modules/.vite/deps/layerchart.js?v=0d86fe05:3551:18
-        at update_reaction (http://localhost:5199/node_modules/.vite/deps/runtime-_WxBaxsw.js?v=725a4c60:4919:16)
-        at execute_derived (http://localhost:5199/node_modules/.vite/deps/runtime-_WxBaxsw.js?v=725a4c60:2615:12)
-        at update_derived (http://localhost:5199/node_modules/.vite/deps/runtime-_WxBaxsw.js?v=725a4c60:2631:14)
-        at get (http://localhost:5199/node_modules/.vite/deps/runtime-_WxBaxsw.js?v=725a4c60:5125:4)
-        at SeriesState.getStackValue (http://localhost:5199/node_modules/.vite/deps/layerchart.js?v=0d86fe05:3613:10)
-    [probe] update_derived=1250000 is_dirty=8686653 t=11647ms
-    [probe] update_derived=1500000 is_dirty=10388811 t=13220ms
-    [probe] update_derived=1750000 is_dirty=12086144 t=14784ms
-    [probe] update_derived=2000000 is_dirty=13787272 t=16386ms
-    [probe] update_derived=2250000 is_dirty=15486239 t=17973ms
-    [probe] update_derived=2500000 is_dirty=17183966 t=19549ms
-    [probe] update_derived=2750000 is_dirty=18881420 t=21085ms
-    [probe] update_derived=3000000 is_dirty=20581544 t=22636ms
-    [probe] update_derived=3250000 is_dirty=22281520 t=24233ms
-    [probe] update_derived=3500000 is_dirty=23979386 t=25732ms
-    [probe] update_derived=3750000 is_dirty=25681102 t=27290ms
-    [probe] update_derived=4000000 is_dirty=27376299 t=28832ms
-    [probe] update_derived=4250000 is_dirty=29076773 t=30360ms
+        at update_derived (http://localhost:5199/node_modules/.vite/deps/runtime-_WxBaxsw.js?v=c2c07050:2630:26)
+        at get (http://localhost:5199/node_modules/.vite/deps/runtime-_WxBaxsw.js?v=c2c07050:5125:4)
+        at http://localhost:5199/node_modules/.vite/deps/layerchart.js?v=1546142c:3551:18
+        at update_reaction (http://localhost:5199/node_modules/.vite/deps/runtime-_WxBaxsw.js?v=c2c07050:4919:16)
+        at execute_derived (http://localhost:5199/node_modules/.vite/deps/runtime-_WxBaxsw.js?v=c2c07050:2615:12)
+        at update_derived (http://localhost:5199/node_modules/.vite/deps/runtime-_WxBaxsw.js?v=c2c07050:2631:14)
+        at get (http://localhost:5199/node_modules/.vite/deps/runtime-_WxBaxsw.js?v=c2c07050:5125:4)
+        at SeriesState.getStackValue (http://localhost:5199/node_modules/.vite/deps/layerchart.js?v=1546142c:3613:10)
+    [probe] update_derived=1250000 is_dirty=8686653 t=11593ms
+    [probe] update_derived=1500000 is_dirty=10388811 t=13133ms
+    [probe] update_derived=1750000 is_dirty=12086144 t=14670ms
+    [probe] update_derived=2000000 is_dirty=13787272 t=16243ms
+    [probe] update_derived=2250000 is_dirty=15486239 t=17769ms
+    [probe] update_derived=2500000 is_dirty=17183966 t=19267ms
+    [probe] update_derived=2750000 is_dirty=18881420 t=20763ms
+    [probe] update_derived=3000000 is_dirty=20581544 t=22269ms
+    [probe] update_derived=3250000 is_dirty=22281520 t=23780ms
+    [probe] update_derived=3500000 is_dirty=23979386 t=25278ms
+    [probe] update_derived=3750000 is_dirty=25681102 t=26767ms
+    [probe] update_derived=4000000 is_dirty=27376299 t=28254ms
+    [probe] update_derived=4250000 is_dirty=29076773 t=29782ms
+    [probe] update_derived=4500000 is_dirty=30774685 t=31271ms
+    [probe] update_derived=4750000 is_dirty=32476839 t=32764ms
+    still wedged after 25s

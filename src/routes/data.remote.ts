@@ -8,7 +8,7 @@ export interface Row {
 
 /**
  * A remote query whose ARGUMENT changes when the page's selector changes, so each selection is a
- * distinct query instance — exactly how a dashboard's period selector works.
+ * distinct query instance, exactly how a dashboard's period selector works.
  */
 export const getRows = query(v.object({ bucket: v.number() }), async ({ bucket }): Promise<Row[]> => {
 	return Array.from({ length: 10 + bucket }, (_, i) => ({
